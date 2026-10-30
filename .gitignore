@@ -1,0 +1,60 @@
+## Core LaTeX/TeX auxiliary files
+*.aux
+*.lof
+*.log
+*.lot
+*.fls
+*.out
+*.toc
+*.fmt
+*.fot
+*.cb
+*.cb2
+.*.lb
+
+## Intermediate documents
+*.dvi
+*.xdv
+*-converted-to.*
+
+## Latexmk and build tools
+*.fdb_latexmk
+*.synctex
+*.synctex()
+*.synctex.gz
+*.synctex(busy)
+*.pdfsync
+_latexmk/
+
+## Bibliography / Biber / BibTeX auxiliary files
+*.bbl
+*.bcf
+*.blg
+*.run.xml
+
+## Indices, glossaries, acronyms
+*.glg
+*.glo
+*.gls
+*.glsdefs
+*.idx
+*.ilg
+*.ind
+*.ist
+*.nlo
+*.nls
+
+## Beamer / presentation auxiliary files
+*.nav
+*.snm
+*.vrb
+
+## PythonTeX / minted / listings
+_minted*
+*.pyg
+
+## Operating System & editor metadata
+.DS_Store
+Thumbs.db
+*:Zone.Identifier
+.vscode/
