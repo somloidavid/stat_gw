@@ -1,19 +1,56 @@
-\documentclass{article}
+\documentclass[12pt, a4paper]{article}
 
 \usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1.5cm]{geometry}
 \usepackage{graphicx}
 \usepackage{amsmath}
-\usepackage{hyperref}
+\usepackage{newtxtext,newtxmath}
+\usepackage{setspace}
+\usepackage{booktabs}
+\usepackage[hidelinks]{hyperref}
 
-\title{Statistical Analysis}
-\author{}
+\onehalfspacing
+\title{
+    Analysis of AI Job Salaries \\
+    \large Fundamentals of Statistics and Data Visualization
+}
+\author{
+    Gimesi Donát \\ BSY9ZS
+    \and Holló Benjámin \\ H6UBTQ
+    \and Kiss Marcell \\ RU30NJ
+    \and Somlói Dávid \\ YGZYW9
+}
 \date{\today}
 
 \begin{document}
-
 \maketitle
 
 \section{Introduction}
-
+    \subsection{Dataset Overview}
+    Description provided by the \href{https://www.kaggle.com/datasets/bismasajjad/global-ai-job-market-and-salary-trends-2025}{\underline{source}}: This comprehensive dataset contains detailed information about AI and machine learning job positions, salaries, and market trends across different countries, experience levels, and company sizes.
+    \subsection{Variables}
+        \begin{table}[htbp]
+            \centering
+            \caption{Description of Dataset Variables, Measurement Scales, and Units}
+            \label{tab:variables}
+            \begin{tabular}{llll}
+                \toprule
+                \textbf{Variable} & \textbf{Measurement Scale} & \textbf{Unit/Values} \\
+                \midrule
+                \textbf{Job Title} & Nominal & e.g. AI Research Scientist, AI Consultant \\
+                \textbf{Salary} & Ratio & USD \\
+                \textbf{Experience Level} & Ordinal & EN(Entry), MI(Mid), SE(Senior), EX(Executive) \\
+                \textbf{Company Size} & Ordinal & S(<50), M(50-250), L(>250) \\
+                \textbf{Remote Ratio} & Ordinal & 0(No remote), 50(Hybrid), 100(Fully remote) \\
+                \textbf{Education Required} & Ordinal & Associate, Bachelor, Master, PhD \\
+                \textbf{Years of Experience} & Ratio & Years \\
+                \textbf{Industry} & Nominal & e.g. Automotive, Media, Energy \\
+                \bottomrule
+            \end{tabular}
+        \end{table}
+    \subsection{Objective}
+    The field of AI related job positions have been rapidly growing in the past years. This analysis aims to capture key trends and dynamics within the domain with a main focus on salaries while also providing insights on details such as 
+    % TODO: finish introduction after the calculations are complete
 
 \end{document}
