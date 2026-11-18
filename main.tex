@@ -1,8 +1,8 @@
-\documentclass[12pt, a4paper]{article}
+\documentclass[12pt, a4paper, titlepage]{article}
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage[margin=1.5cm]{geometry}
+\usepackage[margin=2cm]{geometry}
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{newtxtext,newtxmath}
@@ -28,7 +28,7 @@
 
 \section{Introduction}
     \subsection{Dataset Overview}
-    Description provided by the \href{https://www.kaggle.com/datasets/bismasajjad/global-ai-job-market-and-salary-trends-2025}{\underline{source}}: This comprehensive dataset contains detailed information about AI and machine learning job positions, salaries, and market trends across different countries, experience levels, and company sizes.
+    Description provided by the \href{https://www.kaggle.com/datasets/bismasajjad/global-ai-job-market-and-salary-trends-2025}{\underline{source}}: This comprehensive dataset contains detailed information about AI and machine learning job positions, salaries, and market trends across different countries, experience levels, and company sizes. 15000 observations
     \subsection{Variables}
         \begin{table}[htbp]
             \centering
@@ -52,5 +52,14 @@
         \end{table}
     \subsection{Objective}
     The field of AI related job positions have been rapidly growing in the past years. This analysis aims to capture key trends and dynamics within the domain with a main focus on salaries while also providing insights on details such as the relationship between years of experience and company benefits.
+
+\section{Statistical Analysis of Salaries}
+
+    \subsection{Distribution and Shape}
+    In order to create a visual representation of the data that is interpretable at a glance, we have decided to form bins of equal length. To determine the initial bin sizing for a sample size of $N = 15\,000$, we used $2^k \geq N$, which yielded $k = 13.87 \approx 14$ for the number of bins. Dividing our dataset into 14 equal bins resulted in a bin length of $h = \frac{x_{max}-x_{min}}{k} = 26184$ given that salaries range from \$32\,519 to \$399\,095.
+    \\
+    By plotting a histogram using the bins described, it becomes clear that the salaries contain some potential outliers, extremes that distort the overall shape of the distribution, limiting the chart's capability to aid a deeper understanding. The fact that the bins have unintuitive boundaries and length also contributes to this limitation.
+    \\
+    To address this, we introduced a frequency density distribution of the salaries based on unequal bin lengths that are easier to interpret. Using this methodology, the majority of the salaries can be more effectively compared to each other, while the extremes are grouped a single bin. While the histogram shows that the highest frequency bin is the one spanning from \$100\,000 to \$150\,000, it is largely due to its width of \$50\,000. The highest concentration of salaries is in the \$50\,000 to \$75\,000 range, closely followed by the \$75\,000 to \$100\,000 category.
 
 \end{document}
