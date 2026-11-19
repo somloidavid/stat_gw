@@ -60,6 +60,41 @@
     \\
     By plotting a histogram using the bins described, it becomes clear that the salaries contain some potential outliers, extremes that distort the overall shape of the distribution, limiting the chart's capability to aid a deeper understanding. The fact that the bins have unintuitive boundaries and length also contributes to this limitation.
     \\
-    To address this, we introduced a frequency density distribution of the salaries based on unequal bin lengths that are easier to interpret. Using this methodology, the majority of the salaries can be more effectively compared to each other, while the extremes are grouped a single bin. While the histogram shows that the highest frequency bin is the one spanning from \$100\,000 to \$150\,000, it is largely due to its width of \$50\,000. The highest concentration of salaries is in the \$50\,000 to \$75\,000 range, closely followed by the \$75\,000 to \$100\,000 category.
+    To address this, we introduced a frequency density distribution of the salaries based on unequal bin lengths that are easier to interpret. Using this methodology, the majority of the salaries can be more effectively compared to each other, while the extremes are grouped into a single bin. Even though the histogram shows that the highest frequency bin is the one spanning from \$100\,000 to \$150\,000, it is largely due to its width of \$50\,000. The highest concentration of salaries is in the \$50\,000 to \$75\,000 range, closely followed by the \$75\,000 to \$100\,000 category. 
+
+    \newcommand{\thead}[1]{\multicolumn{1}{c}{#1}}
+    \begin{table}[htbp]
+        \centering
+        \caption{Frequency Table of Salaries using Equal Size Bins}
+        \label{tab:freq_table_equal_size_bins}
+        \resizebox{\textwidth}{!}{%
+            \begin{tabular}{crrrrrrrrr}
+                \toprule
+                \thead{\textbf{Salary Bin}} & \thead{$f_i$} & \thead{$f_i'$} & \thead{$g_i$ (\%)} & \thead{$g_i'$ (\%)} & \thead{$S_i$ (th\$)} & \thead{$S_i'$ (th\$)} & \thead{$Z_i$ (\%)} & \thead{$Z_i'$ (\%)} & \thead{$f_i/h_i$} \\
+                \midrule
+                30\,000 -- 50\,000 & 1140 & 1140 & 7.60 & 7.60 & 49609 & 49609 & 2.87 & 2.87 & 0.0570\\
+                50\,000 -- 75\,000 & 3245 & 4385 & 21.63 & 29.23 & 204559 & 254168 & 11.82 & 14.69 & 0.1298\\
+                75\,000 -- 100\,000 & 3147& 7532 & 20.98 & 50.21 & 274581 & 528749 & 15.87 & 30.56 & 0.1259\\
+                100\,000 -- 150\,000 & 3941 & 11473 & 26.27 & 76.49 & 481768 & 1010534 & 27.85 & 58.40 & 0.0788\\
+                150\,000 -- 250\,000 & 2928 & 14401 & 19.52 & 96.01 & 545800 & 1556334 & 31.54 & 89.95 & 0.0293\\
+                250\,000 -- 400\,000 & 599 & 15000 & 3.99 & 100.00 & 173901 & 1730234 & 10.05 & 100.00 & 0.0040\\
+                \midrule
+                Total & 15000 & & 100.00 & & 1730234 & & 100.00 & & \\
+                \bottomrule
+            \end{tabular}
+        }%
+        \vspace{0.5em}
+        \parbox{\linewidth}{\footnotesize\textit{Notation:}
+            $f_i$: Absolute Frequency;
+            $f_i'$: Cumulative Frequency;
+            $g_i$: Relative Frequency (\%);
+            $g_i'$: Cumulative Relative Frequency (\%);
+            $S_i$: Absolute Salary Sum;
+            $S_i'$: Cumulative Absolute Salary Sum;
+            $Z_i$: Relative Salary Sum (\%);
+            $Z_i'$: Cumulative Relative Salary Sum (\%);
+            $f_i/h_i$: Frequency Density.
+        }
+    \end{table}
 
 \end{document}
