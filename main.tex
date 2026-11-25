@@ -28,91 +28,91 @@
 \maketitle
 
 \section{Introduction}
-    \subsection{Dataset Overview}
-    Description provided by the \href{https://www.kaggle.com/datasets/bismasajjad/global-ai-job-market-and-salary-trends-2025}{\underline{source}}: This comprehensive dataset contains detailed information about AI and machine learning job positions, salaries, and market trends across different countries, experience levels, and company sizes. 15000 observations
-    \subsection{Variables}
-        \begin{table}[htbp]
-            \centering
-            \caption{Description of Dataset Variables, Measurement Scales, and Units}
-            \label{tab:variables}
-            \begin{tabular}{llll}
-                \toprule
-                \textbf{Variable} & \textbf{Measurement Scale} & \textbf{Unit/Values} \\
-                \midrule
-                \textbf{Job Title} & Nominal & e.g. AI Research Scientist, AI Consultant \\
-                \textbf{Salary} & Ratio & USD \\
-                \textbf{Experience Level} & Ordinal & EN(Entry), MI(Mid), SE(Senior), EX(Executive) \\
-                \textbf{Company Size} & Ordinal & S(<50), M(50-250), L(>250) \\
-                \textbf{Remote Ratio} & Ordinal & 0(No remote), 50(Hybrid), 100(Fully remote) \\
-                \textbf{Education Required} & Ordinal & Associate, Bachelor, Master, PhD \\
-                \textbf{Years of Experience} & Ratio & Years \\
-                \textbf{Industry} & Nominal & e.g. Automotive, Media, Energy \\
-                \textbf{Benefits Score} & Ordinal & 5-10, step: 0.1 \\
-                \bottomrule
-            \end{tabular}
-        \end{table}
-    \subsection{Objective}
-    The field of AI related job positions have been rapidly growing in the past years. This analysis aims to capture key trends and dynamics within the domain with a main focus on salaries while also providing insights on details such as the relationship between years of experience and company benefits.
+\subsection{Dataset Overview}
+Description provided by the \href{https://www.kaggle.com/datasets/bismasajjad/global-ai-job-market-and-salary-trends-2025}{\underline{source}}: This comprehensive dataset contains detailed information about AI and machine learning job positions, salaries, and market trends across different countries, experience levels, and company sizes. 15000 observations
+\subsection{Variables}
+\begin{table}[htbp]
+    \centering
+    \caption{Description of Dataset Variables, Measurement Scales, and Units}
+    \label{tab:variables}
+    \begin{tabular}{llll}
+        \toprule
+        \textbf{Variable}            & \textbf{Measurement Scale} & \textbf{Unit/Values}                          \\
+        \midrule
+        \textbf{Job Title}           & Nominal                    & e.g. AI Research Scientist, AI Consultant     \\
+        \textbf{Salary}              & Ratio                      & USD                                           \\
+        \textbf{Experience Level}    & Ordinal                    & EN(Entry), MI(Mid), SE(Senior), EX(Executive) \\
+        \textbf{Company Size}        & Ordinal                    & S(<50), M(50-250), L(>250)                    \\
+        \textbf{Remote Ratio}        & Ordinal                    & 0(No remote), 50(Hybrid), 100(Fully remote)   \\
+        \textbf{Education Required}  & Ordinal                    & Associate, Bachelor, Master, PhD              \\
+        \textbf{Years of Experience} & Ratio                      & Years                                         \\
+        \textbf{Industry}            & Nominal                    & e.g. Automotive, Media, Energy                \\
+        \textbf{Benefits Score}      & Ordinal                    & 5-10, step: 0.1                               \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+\subsection{Objective}
+The field of AI related job positions have been rapidly growing in the past years. This analysis aims to capture key trends and dynamics within the domain with a main focus on salaries while also providing insights on details such as the relationship between years of experience and company benefits.
 
 \section{Statistical Analysis of Salaries}
 
-    \subsection{Distribution and Shape}
-    In order to create a visual representation of the data that is interpretable at a glance, we have decided to form bins of equal length. To determine the initial bin sizing for a sample size of $N = 15\,000$, we used $2^k \geq N$, which yielded $k = 13.87 \approx 14$ for the number of bins. Dividing our dataset into 14 equal bins resulted in a bin length of $h = \frac{x_{max}-x_{min}}{k} = 26184$ given that salaries range from \$32\,519 to \$399\,095.
-    
-    By plotting a histogram using the bins described, it becomes clear that the salaries contain some potential outliers, extremes that distort the overall shape of the distribution, limiting the chart's capability to aid a deeper understanding. The fact that the bins have unintuitive boundaries and length also contributes to this limitation.
-    
-    To address this, we introduced a frequency density distribution of the salaries based on unequal bin lengths that are easier to interpret. Using this methodology, the majority of the salaries can be more effectively compared to each other, while the extremes are grouped into a single bin. Even though the histogram shows that the highest frequency bin is the one spanning from \$100\,000 to \$150\,000, it is largely due to its width of \$50\,000. The highest concentration of salaries is in the \$50\,000 to \$75\,000 range, closely followed by the \$75\,000 to \$100\,000 category. 
+\subsection{Distribution and Shape}
+In order to create a visual representation of the data that is interpretable at a glance, we have decided to form bins of equal length. To determine the initial bin sizing for a sample size of $N = 15\,000$, we used $2^k \geq N$, which yielded $k = 13.87 \approx 14$ for the number of bins. Dividing our dataset into 14 equal bins resulted in a bin length of $h = \frac{x_{max}-x_{min}}{k} = 26184$ given that salaries range from \$32\,519 to \$399\,095.
 
-    \newcommand{\thead}[1]{\multicolumn{1}{c}{#1}}
-    \begin{table}[htbp]
-        \centering
-        \caption{Frequency Table of Salaries using Unequal Size Bins}
-        \label{tab:freq_table_unequal_size_bins}
-        \resizebox{\textwidth}{!}{%
-            \begin{tabular}{crrrrrrrrr}
-                \toprule
-                \thead{\textbf{Salary Bin}} & \thead{$f_i$} & \thead{$f_i'$} & \thead{$g_i$ (\%)} & \thead{$g_i'$ (\%)} & \thead{$S_i$ (\$k)} & \thead{$S_i'$ (\$k)} & \thead{$Z_i$ (\%)} & \thead{$Z_i'$ (\%)} & \thead{$f_i/h_i$} \\
-                \midrule
-                30\,000 -- 50\,000 & 1140 & 1140 & 7.60 & 7.60 & 49609 & 49609 & 2.87 & 2.87 & 0.0570\\
-                50\,000 -- 75\,000 & 3245 & 4385 & 21.63 & 29.23 & 204559 & 254168 & 11.82 & 14.69 & 0.1298\\
-                75\,000 -- 100\,000 & 3147& 7532 & 20.98 & 50.21 & 274581 & 528749 & 15.87 & 30.56 & 0.1259\\
-                100\,000 -- 150\,000 & 3941 & 11473 & 26.27 & 76.49 & 481768 & 1010534 & 27.85 & 58.40 & 0.0788\\
-                150\,000 -- 250\,000 & 2928 & 14401 & 19.52 & 96.01 & 545800 & 1556334 & 31.54 & 89.95 & 0.0293\\
-                250\,000 -- 400\,000 & 599 & 15000 & 3.99 & 100.00 & 173901 & 1730234 & 10.05 & 100.00 & 0.0040\\
-                \midrule
-                Total & 15000 & & 100.00 & & 1730234 & & 100.00 & & \\
-                \bottomrule
-            \end{tabular}
-        }%
-        \vspace{0.5em}
-        \parbox{\linewidth}{\footnotesize\textit{Notation:}
-            $f_i$: Absolute Frequency;
-            $f_i'$: Cumulative Frequency;
-            $g_i$: Relative Frequency (\%);
-            $g_i'$: Cumulative Relative Frequency (\%);
-            $S_i$: Absolute Salary Sum;
-            $S_i'$: Cumulative Absolute Salary Sum;
-            $Z_i$: Relative Salary Sum (\%);
-            $Z_i'$: Cumulative Relative Salary Sum (\%);
-            $f_i/h_i$: Frequency Density.
-        }
-    \end{table}
+By plotting a histogram using the bins described, it becomes clear that the salaries contain some potential outliers, extremes that distort the overall shape of the distribution, limiting the chart's capability to aid a deeper understanding. The fact that the bins have unintuitive boundaries and length also contributes to this limitation.
 
-    The distribution shows a clear concentration of earners in the lower half of the salary range, mainly under \$100\,000 with more than half of the observations, followed by a declining trend in frequency density. This pattern suggests a right-skewed distribution, which is supported by the primary measures of shape.
-    \begin{table}[htbp]
+To address this, we introduced a frequency density distribution of the salaries based on unequal bin lengths that are easier to interpret. Using this methodology, the majority of the salaries can be more effectively compared to each other, while the extremes are grouped into a single bin. Even though the histogram shows that the highest frequency bin is the one spanning from \$100\,000 to \$150\,000, it is largely due to its width of \$50\,000. The highest concentration of salaries is in the \$50\,000 to \$75\,000 range, closely followed by the \$75\,000 to \$100\,000 category.
+
+\newcommand{\thead}[1]{\multicolumn{1}{c}{#1}}
+\begin{table}[htbp]
+    \centering
+    \caption{Frequency Table of Salaries using Unequal Size Bins}
+    \label{tab:freq_table_unequal_size_bins}
+    \resizebox{\textwidth}{!}{%
+        \begin{tabular}{crrrrrrrrr}
+            \toprule
+            \thead{\textbf{Salary Bin}} & \thead{$f_i$} & \thead{$f_i'$} & \thead{$g_i$ (\%)} & \thead{$g_i'$ (\%)} & \thead{$S_i$ (\$k)} & \thead{$S_i'$ (\$k)} & \thead{$Z_i$ (\%)} & \thead{$Z_i'$ (\%)} & \thead{$f_i/h_i$} \\
+            \midrule
+            30\,000 -- 50\,000          & 1140          & 1140           & 7.60               & 7.60                & 49609               & 49609                & 2.87               & 2.87                & 0.0570            \\
+            50\,000 -- 75\,000          & 3245          & 4385           & 21.63              & 29.23               & 204559              & 254168               & 11.82              & 14.69               & 0.1298            \\
+            75\,000 -- 100\,000         & 3147          & 7532           & 20.98              & 50.21               & 274581              & 528749               & 15.87              & 30.56               & 0.1259            \\
+            100\,000 -- 150\,000        & 3941          & 11473          & 26.27              & 76.49               & 481768              & 1010534              & 27.85              & 58.40               & 0.0788            \\
+            150\,000 -- 250\,000        & 2928          & 14401          & 19.52              & 96.01               & 545800              & 1556334              & 31.54              & 89.95               & 0.0293            \\
+            250\,000 -- 400\,000        & 599           & 15000          & 3.99               & 100.00              & 173901              & 1730234              & 10.05              & 100.00              & 0.0040            \\
+            \midrule
+            Total                       & 15000         &                & 100.00             &                     & 1730234             &                      & 100.00             &                     &                   \\
+            \bottomrule
+        \end{tabular}
+    }%
+    \vspace{0.5em}
+    \parbox{\linewidth}{\footnotesize\textit{Notation:}
+        $f_i$: Absolute Frequency;
+        $f_i'$: Cumulative Frequency;
+        $g_i$: Relative Frequency (\%);
+        $g_i'$: Cumulative Relative Frequency (\%);
+        $S_i$: Absolute Salary Sum;
+        $S_i'$: Cumulative Absolute Salary Sum;
+        $Z_i$: Relative Salary Sum (\%);
+        $Z_i'$: Cumulative Relative Salary Sum (\%);
+        $f_i/h_i$: Frequency Density.
+    }
+\end{table}
+
+The distribution shows a clear concentration of earners in the lower half of the salary range, mainly under \$100\,000 with more than half of the observations, followed by a declining trend in frequency density. This pattern suggests a right-skewed distribution, which is supported by the primary measures of shape.
+\begin{table}[htbp]
     \centering
     \begin{threeparttable}
         \caption{Shape Indicators of Salary Distribution}
         \label{tab:shape_metrics}
         \begin{tabular}{llr}
             \toprule
-            \textbf{Metric} & \textbf{Value} & \textbf{Interpretation} \\
+            \textbf{Metric} & \textbf{Value} & \textbf{Interpretation}                       \\
             \midrule
-            $p$ & 0.7788 & Moderate right-skew \\
-            $F_{0.25}$ & 0.2254 & Moderate right-skew based on quartiles \\
-            $F_{0.10}$ & 0.3620 & Slightly stronger right skew based on deciles \\
-            $\alpha_3$ & 1.2526 & Strong positive skew \\
-            $\alpha_4$ & 1.5692 & Leptokurtic (heavier tails than normal) \\
+            $p$             & 0.7788         & Moderate right-skew                           \\
+            $F_{0.25}$      & 0.2254         & Moderate right-skew based on quartiles        \\
+            $F_{0.10}$      & 0.3620         & Slightly stronger right skew based on deciles \\
+            $\alpha_3$      & 1.2526         & Strong positive skew                          \\
+            $\alpha_4$      & 1.5692         & Leptokurtic (heavier tails than normal)       \\
             \bottomrule
         \end{tabular}
         \begin{tablenotes}\footnotesize\raggedright
@@ -124,37 +124,51 @@
             $\alpha_4$: Excess Kurtosis.
         \end{tablenotes}
     \end{threeparttable}
-    \end{table}
-    \par Pearson's second skewness coefficient indicates a moderate right skew on the whole range of the distribution. The same can be seen in the interquartile and interdecile ranges with an even stronger skewness in the latter. These findings are also supported by the standardized third moment taking a moderately large positive value. The shape of the distribution is confirmed by the excess kurtosis value being greater than zero, signaling heavier tails compared to a normal distribution.
-    \begin{table}[htbp]
+\end{table}
+\par Pearson's second skewness coefficient indicates a moderate right skew on the whole range of the distribution. The same can be seen in the interquartile and interdecile ranges with an even stronger skewness in the latter. These findings are also supported by the standardized third moment taking a moderately large positive value. The shape of the distribution is confirmed by the excess kurtosis value being greater than zero, signaling heavier tails compared to a normal distribution.
+\begin{table}[htbp]
     \centering
     \begin{threeparttable}
         \caption{Measures of Location and Dispersion for Salaries (\$)}
         \label{tab:location_dispersion_metrics}
         \begin{tabular}{lr p{0.5cm} lr}
             \toprule
-            \multicolumn{2}{c}{\textbf{Location Measures}} & & \multicolumn{2}{c}{\textbf{Dispersion Measures}} \\
+            \multicolumn{2}{c}{\textbf{Location Measures}} &                  & \multicolumn{2}{c}{\textbf{Dispersion Measures}}                                                  \\
             \cmidrule{1-2} \cmidrule{4-5}
-            \textbf{Metric} & \textbf{Value} & & \textbf{Metric} & \textbf{Value} \\
+            \textbf{Metric}                                & \textbf{Value}   &                                                  & \textbf{Metric}             & \textbf{Value}   \\
             \midrule
-            Minimum & 32\,519.00 & & Range ($R$) & 366\,576.00 \\
-            Lower Decile ($D_1$) & 53\,084.40 & & Interquartile Range (IQR) & 76\,232.25 \\
-            Lower Quartile ($Q_1$) & 70\,179.25 & & Interdecile Range (IDR) & 146\,150.40 \\
-            Median & 99\,705.00 & & Variance & 3\,631\,138\,850 \\
-            Mean & 115\,348.97 & & Standard Deviation & 60\,258.93 \\
-            Upper Quartile ($Q_3$) & 146\,411.50 & & Relative Standard Deviation & 0.52 \\
-            Upper Decile ($D_9$) & 199\,234.80 & & & \\
-            Maximum & 399\,095.00 & & & \\
-            Mode & 51\,000, 67\,253 & & & \\
+            Minimum                                        & 32\,519.00       &                                                  & Range ($R$)                 & 366\,576.00      \\
+            Lower Decile ($D_1$)                           & 53\,084.40       &                                                  & Interquartile Range (IQR)   & 76\,232.25       \\
+            Lower Quartile ($Q_1$)                         & 70\,179.25       &                                                  & Interdecile Range (IDR)     & 146\,150.40      \\
+            Median                                         & 99\,705.00       &                                                  & Variance                    & 3\,631\,138\,850 \\
+            Mean                                           & 115\,348.97      &                                                  & Standard Deviation          & 60\,258.93       \\
+            Upper Quartile ($Q_3$)                         & 146\,411.50      &                                                  & Relative Standard Deviation & 0.52             \\
+            Upper Decile ($D_9$)                           & 199\,234.80      &                                                  &                             &                  \\
+            Maximum                                        & 399\,095.00      &                                                  &                             &                  \\
+            Mode                                           & 51\,000, 67\,253 &                                                  &                             &                  \\
             \bottomrule
         \end{tabular}
     \end{threeparttable}
-    \end{table}
-    \par To conclude the shape analysis we compare the location of the Mean, Median, and Mode. In this case the following can be observed: mode $<$ median $<$ mean, which is also consistent with the skewness measures. Furthermore it is notable that the Range of measured Salaries, equal to \$366\,576, is approximately twelve times the \$32\,519 minimum value. The Interquartile Range indicates that the middle 50\% of the salaries only cover \$76\,232.25 of the total range. For the Interdecile Range, this value is \$146\,150.40. The top earner takes home twice the amount of salary as the lowest paid individual in the top 10\%. The Standard Deviation of \$60\,258.93 from the mean of \$115\,348.97, resulting in a relative standard deviation of 0.52,  suggests a high degree of dispersion in the dataset. These findings imply the presence of outliers.
+\end{table}
+\par To conclude the shape analysis we compare the location of the Mean, Median, and Mode. In this case the following can be observed: mode $<$ median $<$ mean, which is also consistent with the skewness measures. Furthermore it is notable that the Range of measured Salaries, equal to \$366\,576, is approximately twelve times the \$32\,519 minimum value. The Interquartile Range indicates that the middle 50\% of the salaries only cover \$76\,232.25 of the total range. For the Interdecile Range, this value is \$146\,150.40. The top earner takes home twice the amount of salary as the lowest paid individual in the top 10\%. The Standard Deviation of \$60\,258.93 from the mean of \$115\,348.97, resulting in a relative standard deviation of 0.52,  suggests a high degree of dispersion in the dataset. These findings imply the presence of outliers.
 
-    To confirm the presence of outliers, we first calculate Tukey's fences. The formula $Q_1 - 1.5 \times IQR$ and $Q_3 + 1.5 \times IQR$ are used to calculate the lower and upper fences, respectively. The resulting fences are $-$\$44\,169.13 and \$260\,759.88. Since the lower fence is below the minimum value we can conclude that there are no lower outliers. The upper fence however separates 483 outliers from the rest of the distribution.
+To confirm the presence of outliers, we first calculate Tukey's fences. The formula $Q_1 - 1.5 \times IQR$ and $Q_3 + 1.5 \times IQR$ are used to calculate the lower and upper fences, respectively. The resulting fences are $-$\$44\,169.13 and \$260\,759.88. Since the lower fence is below the minimum value we can conclude that there are no lower outliers. The upper fence however separates 483 outliers from the rest of the distribution.
 
-    \subsection{Distribution of Salary Concentration}
-    Measuring the concentration of income is important for determining the equality of income distribution within the observed earners. This can be done using the Lorenz Curve and the Gini Coefficient. To provide further insight, we decided to group the individuals based on their education level. The dataset includes four levels of education: Associate, Bachelor, Master and PhD. Our aim is to determine if the level of education has a significant impact on the distribution of income. 
+\subsection{Salary Concentration by Education Level}
+Measuring the concentration of income is important for determining the equality of income distribution within the observed earners. This can be done using the Lorenz curve and the Gini coefficient. To provide further insight, we decided to group the individuals based on their education level. The dataset includes four levels of education: Associate, Bachelor, Master and PhD. Our aim is to determine if the level of education has a notable impact on the distribution of income.
 
-    \end{document}
+We started by calculating the cumulative absolute and relative value sums of salaries in each decile. By plotting the Lorenz curves of these concentration distributions on the same graph, the differences can be visually assessed. The final graph shows a similar deviation from the line of equality for all education levels. This is supported by the Gini indices as well, being 0.2734 for Associate, 0.2877 for Bachelor, 0.2994 for Master and 0.2683 for PhD degrees. The difference in the values for Master and Bachelor holders compared to the other groups is likely due to their lower cumulative salary share in the 40--70\% range of earners, compared to the same range for other education levels.
+
+\section{Visual Analysis of Salary and Other Variables}
+\subsection{Mean and Median Salaries by Remote Ratio}
+The chart indicates that both Mean and Median salaries are almost identical among the three groups. The difference between the lowest and highest values are approximately \$2000 for both metrics.
+
+\subsection{Median Salary by Company Size}
+The Median salary clearly correlates with the size of the company with a \$9\,500 difference between small and medium companies and a \$16\,000 difference between medium and large companies.
+
+\subsection{Concentration of Salaries by Industry}
+When taking the relative sum of salaries of different industries, we can conclude that the retail sector offers the most salaries in total, while the lowest amount is in the Gaming category. The difference between the individual groups is not extreme, as their shares range from 6.3\% to 7.1\%.
+
+\subsection{Distribution of Experience Level by Company Size}x
+
+\end{document}
